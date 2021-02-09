@@ -1,12 +1,11 @@
+import time
+
 import scrapy
 
 class BlogSpider(scrapy.Spider):
     name = 'blogspider'
-    start_urls = ['https://www.zyte.com/blog/']
+    start_urls = ['http://exercise.kingname.info/exercise_middleware_ua']
 
     def parse(self, response):
-        for title in response.css('.oxy-post-title'):
-            print(title.get() + "=====================")
-
-        for next_page in response.css('a.next'):
-            yield response.follow(next_page, self.parse)
+        print(response.text)
+        yield response.follow('http://exercise.kingname.info/exercise_middleware_ua?time=%s'%time.time(), self.parse)

@@ -4,9 +4,9 @@ SPIDER_MODULES = ['my_project.spiders']
 NEWSPIDER_MODULE = 'my_project.spiders'
 
 PROXIES = [
-    'https://114.217.243.25:8118',
-    'https://125.37.175.233:8118',
-    'http://1.85.116.218:8118'
+    'https://36.248.132.59:9999',
+    'https://175.42.68.179:9999',
+    'http://175.42.158.73:9999'
 ]
 
 USER_AGENT_LIST = [
@@ -29,7 +29,7 @@ USER_AGENT_LIST = [
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36'
 
 # 遵循爬虫协议
-# ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = False
 
 # 并发请求数 默认16
 # CONCURRENT_REQUESTS = 32
@@ -55,12 +55,14 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # 爬虫中间件
 # SPIDER_MIDDLEWARES = {
 #    'my_project.middlewares.MyProjectSpiderMiddleware': 543,
+#    'my_project.middlewares.UAMiddleware': 600,
 # }
 
-# 下载中间件
-# DOWNLOADER_MIDDLEWARES = {
-#     'my_project.middlewares.MyProjectDownloaderMiddleware': 543,
-# }
+# 下载中间件 直接操作request和response的
+DOWNLOADER_MIDDLEWARES = {
+    'my_project.middlewares.DoubanDownloaderMiddleware': 543,
+    'my_project.middlewares.ProxyMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -69,9 +71,9 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 # }
 
 # 管道流
-ITEM_PIPELINES = {
-    'my_project.pipelines.MyProjectPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#     'my_project.pipelines.MyProjectPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

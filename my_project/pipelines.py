@@ -6,7 +6,7 @@ class MyProjectPipeline:
     # 每次spider yield item的时候调用
     def process_item(self, item, spider):
         print("++++++++")
-        self.file.write(json.dumps(dict(item)) + '\n')
+        self.file.write(json.dumps(dict(item)) + ',\n')
         return item
 
     # 打开这个pipeline的时候调用

@@ -1,8 +1,9 @@
 from scrapy import signals
 from itemadapter import is_item, ItemAdapter
 import random
-from scrapy import settings
+from scrapy.utils.project import get_project_settings
 
+settings = get_project_settings()
 
 class MyProjectSpiderMiddleware:
     @classmethod
@@ -51,13 +52,19 @@ class MyProjectDownloaderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-# class ProxyMiddleware(object):
-#     def process_request(self, request, spider):
-#         proxy = random.choice(settings['PROXIES'])
-#         request.meta['proxy'] = proxy
+class ProxyMiddleware(object):
+    def process_request(self, request, spider):
+        proxy = random.choice(settings['PROXIES'])
+        request.meta['proxy'] = proxy
 
 
-# class UAMiddleware(object):
-#     def process_request(self, request, spider):
-#         proxy = random.choice(settings['PROXIES'])
-#         request.meta['proxy'] = proxy
+class DoubanDownloaderMiddleware(object):
+    def process_request(self, request, spider):
+        request.headers['User-Agent'] = random.choice(settings['USER_AGENT_LIST'])
+        return None
+
+    def process_response(self, request, response, spider):
+        return response
+
+    def process_exception(self, request, exception, spider):
+        return request
