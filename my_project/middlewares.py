@@ -2,6 +2,7 @@ from scrapy import signals
 from itemadapter import is_item, ItemAdapter
 import random
 from scrapy.utils.project import get_project_settings
+from scrapy.http import Request
 
 settings = get_project_settings()
 
@@ -68,3 +69,8 @@ class DoubanDownloaderMiddleware(object):
 
     def process_exception(self, request, exception, spider):
         return request
+
+
+class CookieMiddleware:
+    def process_request(self, request: Request):
+        request.cookies
