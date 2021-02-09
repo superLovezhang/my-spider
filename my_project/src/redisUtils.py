@@ -12,17 +12,21 @@ class RedisUtils():
 
     def __init__(self, params=None):
         if not params is None: RedisUtils.param = params
-        self.__initClient()
+        RedisUtils._initPoolClient()
 
     def __del__(self):
         RedisUtils.client.close()
 
-    def __initClient(self):
+    @classmethod
+    def _initPoolClient(cls):
         pool = redis.ConnectionPool(RedisUtils.param)
-        RedisUtils.client = redis.Redis(connection_pool=pool)
+        cls.client = redis.Redis(connection_pool=pool)
 
-    @property.getter
-    def client(self):
-        if RedisUtils.client is None:
-            self.__initClient()
-        return RedisUtils.client
+    @classmethod
+    def _initClient(cls):
+        cls.client = redis.Redis(decode_responses=True)
+
+    @classmethod
+    def getClient(cls):
+        if cls.client is None: cls._initClient()
+        return cls.client

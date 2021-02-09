@@ -1,8 +1,8 @@
 from scrapy import signals
-from itemadapter import is_item, ItemAdapter
-import random
 from scrapy.utils.project import get_project_settings
 from scrapy.http import Request
+import random, logging, time
+from .src.cookieUtils import CookieUtils
 
 settings = get_project_settings()
 
@@ -72,5 +72,9 @@ class DoubanDownloaderMiddleware(object):
 
 
 class CookieMiddleware:
-    def process_request(self, request: Request):
-        request.cookies
+    def process_request(self, request: Request, spider):
+        if (spider.name == 'cookiespider'):
+            cookies = CookieUtils.getCookies()
+            logging.info("===================================被cookie中间件处理, cookie是%s"%cookies)
+            request.cookies = cookies
+        return None
