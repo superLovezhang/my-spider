@@ -1,16 +1,12 @@
-import scrapy, time
-from scrapy.http import HtmlResponse
+import scrapy
 
+class BlogSpider(scrapy.Spider):
+    name = 'blogspider'
+    start_urls = ['https://www.zyte.com/blog/']
 
-class Test1Spider(scrapy.Spider):
-    name = 'test1'
-    index = 0
-    allowed_domains = ['http://exercise.kingname.info/exercise_middleware_ua']
-    start_urls = ['http://exercise.kingname.info/exercise_middleware_ua']
+    def parse(self, response):
+        for title in response.css('.oxy-post-title'):
+            print(title.get() + "=====================")
 
-    def parse(self, response: HtmlResponse):
-        print(response.text, "==========================================")
-        # ++self.index
-        # if (self.index >= 10):
-        #     return
-        return response.follow('https://book.douban.com/tag/编程?start=%d&type=T'%20, self.parse)
+        for next_page in response.css('a.next'):
+            yield response.follow(next_page, self.parse)

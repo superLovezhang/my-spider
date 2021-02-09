@@ -29,7 +29,7 @@ USER_AGENT_LIST = [
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36'
 
 # 遵循爬虫协议
-ROBOTSTXT_OBEY = False
+# ROBOTSTXT_OBEY = False
 
 # 并发请求数 默认16
 # CONCURRENT_REQUESTS = 32
@@ -41,7 +41,7 @@ ROBOTSTXT_OBEY = False
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # 是否允许携带cookie
-COOKIES_ENABLED = True
+# COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
@@ -58,9 +58,9 @@ COOKIES_ENABLED = True
 # }
 
 # 下载中间件
-DOWNLOADER_MIDDLEWARES = {
-    'my_project.middlewares.MyProjectDownloaderMiddleware': 543,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#     'my_project.middlewares.MyProjectDownloaderMiddleware': 543,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

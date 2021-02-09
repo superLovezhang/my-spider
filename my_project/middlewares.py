@@ -57,7 +57,7 @@ class MyProjectDownloaderMiddleware:
 #         request.meta['proxy'] = proxy
 
 
-class UAMiddleware(object):
-    def process_request(self, request, spider):
-        proxy = random.choice(settings['PROXIES'])
-        request.meta['proxy'] = proxy
+# class UAMiddleware(object):
+#     def process_request(self, request, spider):
+#         proxy = random.choice(settings['PROXIES'])
+#         request.meta['proxy'] = proxy

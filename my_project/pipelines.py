@@ -11,7 +11,7 @@ class MyProjectPipeline:
 
     # 打开这个pipeline的时候调用
     def open_spider(self, spider):
-        path = os.path.abspath("spiders/data")
+        path = os.path.abspath("data")
         self.file = open('%s\\data.json'%path, 'w', encoding='utf8')
         self.file.write('[\n')
 
