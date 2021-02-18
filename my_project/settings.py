@@ -61,7 +61,7 @@ ROBOTSTXT_OBEY = False
 # 下载中间件 直接操作request和response的
 DOWNLOADER_MIDDLEWARES = {
     'my_project.middlewares.DoubanDownloaderMiddleware': 543,
-    'my_project.middlewares.CookieMiddleware': 543,
+    'my_project.middlewares.CookieMiddleware': 542,
     # 'my_project.middlewares.ProxyMiddleware': 543,
 }
 

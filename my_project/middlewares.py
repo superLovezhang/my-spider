@@ -53,14 +53,21 @@ class MyProjectDownloaderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
+"""
+处理请求IP的下载中间件
+"""
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
         proxy = random.choice(settings['PROXIES'])
         request.meta['proxy'] = proxy
 
 
+"""
+处理User-Agent的下载中间件
+"""
 class DoubanDownloaderMiddleware(object):
     def process_request(self, request, spider):
+        time.sleep(5)
         request.headers['User-Agent'] = random.choice(settings['USER_AGENT_LIST'])
         return None
 
@@ -71,6 +78,9 @@ class DoubanDownloaderMiddleware(object):
         return request
 
 
+"""
+处理cookie的下载中间件
+"""
 class CookieMiddleware:
     def process_request(self, request: Request, spider):
         if (spider.name == 'cookiespider'):
